@@ -53,7 +53,7 @@ jobs:
       - name: Install stylua
         run: |
           curl https://sh.rustup.rs -sSf | sh -s -- -y
-          source $HOME/.carge/env
+          source $HOME/.cargo/env
           cargo install stylua
 
       - name: Lint
