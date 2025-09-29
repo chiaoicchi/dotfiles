@@ -1,10 +1,3 @@
--- Install dependecies
--- Option setting
-require("options")
--- Keymap setting
-require("keymaps")
-
--- Plugins setting
 -- Bootstrap `lazy.nvim`
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -21,8 +14,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+
 require("lazy").setup({
   spec = {
+    -- Import plugins
     { import = "plugins" },
   },
 })
