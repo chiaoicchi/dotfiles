@@ -8,4 +8,4 @@ vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 -- Search highlight delete
-vim.keymap.set('n', "<Esc>", "<Cmd>nohlsearch<CR>", { silent = true })
+vim.keymap.set("n", "<Esc>", "<Cmd>nohlsearch<CR>", { silent = true })
