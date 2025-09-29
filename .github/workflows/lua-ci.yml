@@ -1,0 +1,65 @@
+name: CI (Lua)
+
+on:
+  pull_request:
+    paths:
+      - "**.lua"
+  workflow_dispatch:
+
+env:
+  LUA_VERSION: "5.4.0"
+  LUAROCKS_VERSION: "3.12.0"
+
+jobs:
+  lua-ci:
+    name: Lint & Format (Lua)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential libreadline-dev unzip curl
+      
+      - name: Install Lua
+        run: |
+          curl -L -R -O https://www.lua.org/ftp/lua-${{ env.LUA_VERSION }}.tar.gz
+          tar zxf lua-${{ env.LUA_VERSION }}.tar.gz
+          cd lua-${{ env.LUA_VERSION }}
+          make all test
+          cd ..
+
+      - name: Install LuaRocks
+        run: |
+          curl -L -R -O https://luarocks.org/releases/luarocks-${{ env.LUAROCKS_VERSION }}.tar.gz
+          tar zxf luarocks-${{ env.LUAROCKS_VERSION }}.tar.gz
+          cd luarocks-${{ env.LUAROCKS_VERSION }}
+          ./configure --with-lua-include=/usr/local/include
+          make
+          sudo make install
+          cd ..
+
+      - name: Install lua tools
+        run: |
+          luarocks install luacheck
+          luarocks install busted
+
+      - name: Install stylua
+        run: |
+          curl https://sh.rustup.rs -sSf | sh -s -- -y
+          source $HOME/.carge/env
+          cargo install stylua
+
+      - name: Lint
+        run: luacheck ./.config/nvim
+
+      - name: Format
+        run: stylua --check ./.config/nvim
+
+      - name: Test
+        run: busted spec/
+
