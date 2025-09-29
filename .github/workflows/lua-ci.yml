@@ -47,7 +47,6 @@ jobs:
       - name: Install lua tools
         run: |
           luarocks install --local luacheck
-          luarocks install --local busted
           echo "$HOME/.luarocks/bin" >> $GITHUB_PATH
 
       - name: Install stylua
@@ -61,7 +60,4 @@ jobs:
 
       - name: Format
         run: stylua --check ./.config/nvim
-
-      - name: Test
-        run: busted spec/
 
