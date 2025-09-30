@@ -94,6 +94,7 @@ return {
           },
         },
       })
+      vim.keymap.set("n", "<leader>t", "<Cmd>Neotree focus<CR>")
     end,
   },
 
@@ -105,7 +106,14 @@ return {
       "git@github.com:nvim-tree/nvim-web-devicons",
     },
     init = function()
-      vim.g.barbar_auto_setup = false;
+      vim.g.barbar_auto_setup = false
+      vim.keymap.set("n", "<S-h>", "<Cmd>BufferPrevious<CR>")
+      vim.keymap.set("n", "<S-l>", "<Cmd>BufferNext<CR>")
+      vim.keymap.set("n", "<leader>c", "<Cmd>BufferClose<CR>")
+      vim.keymap.set("n", "<leader>b", "<Cmd>BufferPick<CR>")
+      for i = 1, 9 do
+        vim.keymap.set("n", "<leader>" .. i, "<Cmd>BufferGoto" .. i .. "<CR>")
+      end
     end,
     opts = {
       sidebar_filetypes = {
