@@ -1,0 +1,7 @@
+[settings]
+
+[settings.python]
+compile = true
+
+[tools]
+python = "3.13.7"
