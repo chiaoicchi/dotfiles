@@ -60,6 +60,7 @@ return {
             },
           },
         },
+        pyright = {},
       }
       for server, config in pairs(servers) do
         config = vim.tbl_deep_extend("force", {
@@ -76,31 +77,19 @@ return {
 
   -- Linter
   {
-    "git@github.com:nvimtools/none-ls.nvim",
-    dependencies = {
-      "git@github.com:nvim-lua/plenary.nvim",
-    },
+    "git@github.com:stevearc/conform.nvim",
+    lazy = true,
+    event = { "BufRead", "BufNewFile" },
     config = function()
-      local none_ls = require("null-ls")
-      none_ls.setup({
-        sources = {
-          none_ls.builtins.formatting.stylua,
+      require("conform").setup({
+        format_on_save = {
+          timeout_ms = 1000,
+          lsp_format = "fallback",
         },
-        on_attach = function(client, bufnr)
-          if client.supports_method("textDocument/formatting") then
-            local group = vim.api.nvim_create_augroup("LspFormatting", {
-              clear = true,
-            })
-            vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = group,
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.format({ bufnr = bufnr })
-              end,
-            })
-          end
-        end,
+        formatters_by_ft = {
+          lua = { "stylua" },
+          python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+        },
       })
     end,
   },

@@ -22,7 +22,9 @@ vim.opt.splitbelow = true
 
 -- Indent setting
 local indent_settings = {
+  rust = { tabstop = 4, shiftwidth = 4, expandtab = true },
   lua = { tabstop = 2, shiftwidth = 2, expandtab = true },
+  python = { tabstop = 4, shiftwidth = 4, expandtab = true },
 }
 for ft, opts in pairs(indent_settings) do
   vim.api.nvim_create_autocmd("FileType", {
