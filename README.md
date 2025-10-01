@@ -122,6 +122,11 @@ brew install ruff
 npm install -g pyright
 ```
 
+#### Install awscli
+
+```bash
+brew install awscli
+```
 
 ### Add synbolic link
 
