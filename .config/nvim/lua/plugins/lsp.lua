@@ -41,6 +41,9 @@ return {
         end
       end
       local servers = {
+        rust_analyzer = {
+          cmd = { "/opt/homebrew/opt/rustup/bin/rust-analyzer" },
+        },
         lua_ls = {
           settings = {
             Lua = {

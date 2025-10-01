@@ -86,6 +86,22 @@ git config --global user.email "<mail adress>"
 git config --global user.name "<username>"
 ```
 
+#### Install Rust
+
+Install [Rust](https://rust-lang.org/), with rustup.
+Why not use mise is rustup is more useful.
+
+```bash
+brew install rustup
+rustup default stable
+```
+
+Install rust-analyzer.
+
+```bash
+rustup component add rust-analyzer
+```
+
 ### Add synbolic link
 
 ```bash
