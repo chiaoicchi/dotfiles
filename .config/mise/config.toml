@@ -4,4 +4,5 @@
 compile = true
 
 [tools]
+awscli = "2.31.5"
 python = "3.13.7"
