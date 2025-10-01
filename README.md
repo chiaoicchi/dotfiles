@@ -101,6 +101,27 @@ Install rust-analyzer.
 ```bash
 rustup component add rust-analyzer
 ```
+#### Install node
+
+Install [node](https://nodejs.org/en)
+
+```bash
+# Search version
+mise ls-remote node
+mise install node@<version>
+mise use -g node@<version>
+```
+
+#### Install uv, ruff and pyright
+
+Install [uv](https://docs.astral.sh/uv/) and [pyright](https://microsoft.github.io/pyright/#/).
+
+```bash
+brew install uv
+brew install ruff
+npm install -g pyright
+```
+
 
 ### Add synbolic link
 
