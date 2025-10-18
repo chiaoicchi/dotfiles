@@ -128,6 +128,20 @@ npm install -g pyright
 brew install awscli
 ```
 
+#### Install lua-language-server
+
+```bash
+brew install lua-language-server
+```
+
+#### Install Terraform
+
+```bash
+mise ls-remote terraform
+mise install terraform@<version>
+mise use -g terraform@<version>
+```
+
 ### Add synbolic link
 
 ```bash
