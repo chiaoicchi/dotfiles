@@ -44,6 +44,10 @@ return {
         rust_analyzer = {
           cmd = { "/opt/homebrew/opt/rustup/bin/rust-analyzer" },
         },
+        tsserver = {},
+        volar = {
+          filetypes = { "typescript", "vue", "json" },
+        },
         lua_ls = {
           settings = {
             Lua = {
@@ -89,6 +93,8 @@ return {
         formatters_by_ft = {
           lua = { "stylua" },
           python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+          typescript = { "prettier", "eslint_d" },
+          vue = { "prettier", "eslint_d" },
         },
       })
     end,
