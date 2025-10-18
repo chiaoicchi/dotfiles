@@ -65,6 +65,11 @@ return {
           },
         },
         pyright = {},
+        terraformls = {
+          cmd = { "terraform-ls", "serve" },
+          filetypes = { "terraform", "tf" },
+          root_dir = require("lspconfig.util").root_pattern(".terraform", ".git", "*.tf"),
+        },
       }
       for server, config in pairs(servers) do
         config = vim.tbl_deep_extend("force", {
@@ -95,6 +100,7 @@ return {
           python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
           typescript = { "prettier", "eslint_d" },
           vue = { "prettier", "eslint_d" },
+          tf = { "terraform_fmt" },
         },
       })
     end,

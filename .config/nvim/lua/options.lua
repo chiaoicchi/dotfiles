@@ -20,12 +20,21 @@ vim.opt.hlsearch = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+-- tf file to terraform file
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.tf",
+  callback = function()
+    vim.bo.filetype = "terraform"
+  end,
+})
+
 -- Indent setting
 local indent_settings = {
   rust = { tabstop = 4, shiftwidth = 4, expandtab = true },
   lua = { tabstop = 2, shiftwidth = 2, expandtab = true },
   python = { tabstop = 4, shiftwidth = 4, expandtab = true },
   typescript = { tabstop = 2, shiftwidth = 2, expandtab = true },
+  terraform = { tabstop = 2, shiftwidth = 2, expandtab = true },
 }
 for ft, opts in pairs(indent_settings) do
   vim.api.nvim_create_autocmd("FileType", {
